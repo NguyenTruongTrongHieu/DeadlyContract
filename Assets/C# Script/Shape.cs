@@ -10,8 +10,6 @@ public class Shape : MonoBehaviour, IPointerClickHandler, IPointerUpHandler, IBe
     public Image ShapeImage;
     public Vector3 shapeSelectedScale;
     public Vector2 offset = new Vector2 (0f, 700f);
-    public bool isInTheBox;
-    public bool isChoosen = false;
 
     private Vector3 shapeStartScale;
     [SerializeField] private RectTransform rectTransform;
@@ -23,6 +21,7 @@ public class Shape : MonoBehaviour, IPointerClickHandler, IPointerUpHandler, IBe
     private BoxCollider2D boxCollider;
     private CanvasGroup canvasGroup;
     private bool trungNhau;
+    private bool isOutSideTheBox;
 
     public void Awake()
     {
@@ -37,10 +36,10 @@ public class Shape : MonoBehaviour, IPointerClickHandler, IPointerUpHandler, IBe
         canvasGroup = this.GetComponent<CanvasGroup>();
     }
 
-    /*public bool isOnStartPosition()
-    { 
-        return rectTransform.localPosition == startPosition;
-    }*/
+    public void ReturnStartPosition()
+    {
+        this.transform.position = startPosition;
+    }
 
     public void OnPointerClick(PointerEventData eventData)
     {
@@ -82,6 +81,11 @@ public class Shape : MonoBehaviour, IPointerClickHandler, IPointerUpHandler, IBe
         {
             this.transform.position = startPosition;
         }
+
+        if (isOutSideTheBox)
+        {
+            ReturnStartPosition();
+        }
     }
 
     public void OnPointerDown(PointerEventData eventData)
@@ -95,8 +99,13 @@ public class Shape : MonoBehaviour, IPointerClickHandler, IPointerUpHandler, IBe
         if (gridSquare != null)
         {
             this.GetComponent<RectTransform>().localScale = shapeSelectedScale;
-            isInTheBox = true;
         }
+
+        Border border = collision.GetComponent<Border>();
+        if (border != null)
+        { 
+            isOutSideTheBox = true;
+        }    
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -110,16 +119,16 @@ public class Shape : MonoBehaviour, IPointerClickHandler, IPointerUpHandler, IBe
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        GridSquare gridSquare = collision.GetComponent<GridSquare>();
-        if (gridSquare != null)
-        {
-            isInTheBox = false;
-        }
-
         Shape shape = collision.GetComponent<Shape>();
         if (shape != null)
         {
             trungNhau = false;
+        }
+
+        Border border = collision.GetComponent<Border>();
+        if (border != null)
+        {
+            isOutSideTheBox = false;
         }
     }
 }

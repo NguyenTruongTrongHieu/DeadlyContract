@@ -35,7 +35,6 @@ public class SelectionAndRotate : MonoBehaviour
                 if (selection.CompareTag("Shape"))
                 {
                     Debug.Log("xoay");
-                    selection.GetComponent<Shape>().isChoosen = true;
                 }
                 else 
                 {
@@ -52,7 +51,7 @@ public class SelectionAndRotate : MonoBehaviour
             Debug.Log("selection null");
             return;
         }
-        if (selection.GetComponent<Shape>().isChoosen == true)
+        if (true)
         {
             var rotation = this.GetComponent<RectTransform>().localRotation;
             rotation.z += 90f;

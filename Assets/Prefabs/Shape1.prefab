@@ -130,6 +130,7 @@ MonoBehaviour:
   ShapeImage: {fileID: 6352352447879575207}
   shapeSelectedScale: {x: 1, y: 1, z: 1}
   offset: {x: -550, y: -430}
+  isChoosen: 0
   rectTransform: {fileID: 0}
   canvas: {fileID: 0}
 --- !u!61 &3115203937451487161

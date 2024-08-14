@@ -55,6 +55,7 @@ MonoBehaviour:
   ShapeImage: {fileID: 922722737528915446}
   shapeSelectedScale: {x: 1, y: 1, z: 1}
   offset: {x: -550, y: -432}
+  isChoosen: 0
   rectTransform: {fileID: 0}
   canvas: {fileID: 0}
 --- !u!61 &9213277680911939423
@@ -86,7 +87,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 98.4, y: 49.9}

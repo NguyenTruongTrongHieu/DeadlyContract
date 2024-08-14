@@ -70,18 +70,6 @@ public class StorageShape : MonoBehaviour
 
     public void CalculateScore()
     {
-        bool isAnyShapeOutsideTheBox = true;
-        foreach (var shape in shapeInGame) 
-        {
-            if (shape.GetComponentInChildren<Shape>().isInTheBox == false)
-            {
-                isAnyShapeOutsideTheBox = false;
-            }
-        }
 
-        if (isAnyShapeOutsideTheBox == false)
-        {
-            Score.scoreInstance.AddScore();
-        }
     }
 }
