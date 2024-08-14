@@ -22,6 +22,7 @@ public class Shape : MonoBehaviour, IPointerClickHandler, IPointerUpHandler, IBe
 
     private BoxCollider2D boxCollider;
     private CanvasGroup canvasGroup;
+    private bool trungNhau;
 
     public void Awake()
     {
@@ -77,29 +78,10 @@ public class Shape : MonoBehaviour, IPointerClickHandler, IPointerUpHandler, IBe
     {
         this.GetComponent<RectTransform>().localScale = shapeStartScale;
 
-        //canvasGroup.alpha = 1f;
-        //canvasGroup.blocksRaycasts = true;
-
-        /*GridSquare gridSquare = GetComponent<GridSquare>();
-        if (gridSquare != null)
+        if (trungNhau)
         {
-            if (gridSquare.isFull == false)
-            {
-                gridSquare.isFull = true;
-                Debug.Log("O co 0 shape");
-            }
-            else
-            {
-                this.transform.position = startPosition;
-                Debug.Log("O co 1 shape");
-            }
+            this.transform.position = startPosition;
         }
-        else {
-            Debug.Log("khong tim thay grid square");
-            return;
-        }*/
-
-        GameEvent.checkIfShapeCanBePlaced();
     }
 
     public void OnPointerDown(PointerEventData eventData)
@@ -110,18 +92,6 @@ public class Shape : MonoBehaviour, IPointerClickHandler, IPointerUpHandler, IBe
     private void OnTriggerStay2D(Collider2D collision)
     {
         GridSquare gridSquare = collision.GetComponent<GridSquare>();
-        /*if (gridSquare != null)
-        {
-            if (gridSquare.isFull == false)
-            {
-                gridSquare.isFull = true;
-                Debug.Log("O co 0 shape");
-            }
-            else {
-                this.transform.position = startPosition;
-                Debug.Log("O co 1 shape");
-            }
-        }*/
         if (gridSquare != null)
         {
             this.GetComponent<RectTransform>().localScale = shapeSelectedScale;
@@ -132,7 +102,10 @@ public class Shape : MonoBehaviour, IPointerClickHandler, IPointerUpHandler, IBe
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Shape shape = collision.GetComponent<Shape>();
-        GridSquare gridSquare = collision.GetComponent<GridSquare>();
+        if (shape != null)
+        {
+            trungNhau = true;
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -141,6 +114,12 @@ public class Shape : MonoBehaviour, IPointerClickHandler, IPointerUpHandler, IBe
         if (gridSquare != null)
         {
             isInTheBox = false;
+        }
+
+        Shape shape = collision.GetComponent<Shape>();
+        if (shape != null)
+        {
+            trungNhau = false;
         }
     }
 }
