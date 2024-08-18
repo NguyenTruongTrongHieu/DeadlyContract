@@ -20,6 +20,7 @@ public class ChooseBox : MonoBehaviour
     {
         box3x3.onClick.AddListener(Box3x3);
         box4x4.onClick.AddListener(Box4x4);
+        box5x5.onClick.AddListener(Box5x5);
     }
 
     // Update is called once per frame
@@ -41,7 +42,7 @@ public class ChooseBox : MonoBehaviour
         }
         grid.rows = 3;
         grid.columns = 3;
-        grid.startPosition = new Vector2(-220, 33);
+        grid.startPosition = new Vector2(-236, -220);
 
         //Score.scoreInstance.scoreTmp = 20;
     }
@@ -59,7 +60,25 @@ public class ChooseBox : MonoBehaviour
         }
         grid.rows = 4;
         grid.columns = 4;
-        grid.startPosition = new Vector2(-212, 94);
+        grid.startPosition = new Vector2(-272, -161);
+
+        //Score.scoreInstance.scoreTmp = 10;
+    }
+
+    public void Box5x5()
+    {
+        Puzzle.SetActive(true);
+        var grid = GameObject.FindGameObjectWithTag("Grid").GetComponent<Grid>();
+        Vien3.SetActive(false);
+        Vien4.SetActive(false);
+        if (grid == null)
+        {
+            Debug.Log("Cut");
+            return;
+        }
+        grid.rows = 5;
+        grid.columns = 5;
+        grid.startPosition = new Vector2(-345, -148);
 
         //Score.scoreInstance.scoreTmp = 10;
     }

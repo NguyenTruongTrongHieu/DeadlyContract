@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
 using UnityEngine;
@@ -30,7 +30,7 @@ public class StorageShape : MonoBehaviour
     {
         if (Puzzle.gameObject.activeSelf)
         {
-            Storage.transform.SetParent(Puzzle.transform) ;
+            Storage.transform.SetParent(Puzzle.transform) ;//Đưa items từ bên ngoài vào trong game object puzzle để người chơi kéo thả vào ô
         }
     }
 
