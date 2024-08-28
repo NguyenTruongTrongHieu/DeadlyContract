@@ -3245,11 +3245,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 2091947958}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4184816326b189d4d80d22fc6f36eab5, type: 3}
+  m_Script: {fileID: 11500000, guid: 9e94b43cbdda3c549a404e401231a231, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ChoiGame: {fileID: 857919133}
-  Thoat: {fileID: 1057586081}
+  StartButton: {fileID: 857919133}
+  OptionsButton: {fileID: 1771181712}
+  LoadButton: {fileID: 661371798}
+  ExitButton: {fileID: 1057586081}
+  OptionsForm: {fileID: 203321399}
+  Volume: {fileID: 1675988330}
+  OptionsToMainMenu: {fileID: 411913607}
+  VolumeMenu: {fileID: 922420071}
+  MusicSlider: {fileID: 1577443662}
+  SFXSlider: {fileID: 1602207360}
+  VolumeToMainMenu: {fileID: 387248705}
 --- !u!1 &2123234054
 GameObject:
   m_ObjectHideFlags: 0

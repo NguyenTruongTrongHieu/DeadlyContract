@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/PuzzleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
+    path: Assets/Scenes/Firebase.unity
+    guid: 38dcf9c39dd52994f8ce87c17eded3d8
+  - enabled: 1
     path: Assets/Scenes/Menu.unity
     guid: f98a100eaa6c79242895f54bec6337d8
   - enabled: 1
