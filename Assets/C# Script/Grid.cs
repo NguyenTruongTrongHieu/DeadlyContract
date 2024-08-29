@@ -6,8 +6,6 @@ using UnityEngine.Rendering;
 
 public class Grid : MonoBehaviour
 {
-    public static Grid GridInstance;
-
     public int columns = 0;
     public int rows = 0;
     public float squaresGap = 0.1f;
@@ -15,6 +13,7 @@ public class Grid : MonoBehaviour
     public Vector2 startPosition = new Vector2(0,0);
     public float squareScale = 1.0f;
     public float everySquareOffset = 0;
+    public bool isReset;//bien xac dinh grid co duoc tao moi khong
 
     private Vector2 offset = new Vector2 (0, 0);
     private List<GameObject> gridSquares = new List<GameObject>();
@@ -22,11 +21,14 @@ public class Grid : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        CreateGrid();
+        //CreateGrid();
+        isReset = false;
     }
 
     public void CreateGrid()
     {
+        ResetGrid();
+        isReset = false;
         SpawnGridSquares();
         SetGridSquaresPosition();
     }
@@ -120,5 +122,10 @@ public class Grid : MonoBehaviour
                 //gridSquare.ActivateSquare();
             }
         }
+    }
+    public void ResetGrid()
+    {
+        isReset = true;
+        gridSquares.Clear();
     }
 }

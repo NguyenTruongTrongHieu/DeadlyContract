@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class StorageShape : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class StorageShape : MonoBehaviour
     public GameObject Storage;
     public GameObject Puzzle;
     public Transform point;
+    public Button nextCustomer;
+    public Transform startPointPosition;
 
     public float distance = 5.0f;
     public float distanceRow = 2;
@@ -19,23 +22,29 @@ public class StorageShape : MonoBehaviour
     public int shapesNumber = 1;//Tong so luong item
     public int shapeNumberInRow = 1;//So luong item tren 1 hang
 
+    private Score scoreInstance;
+
     // Start is called before the first frame update
     void Start()
     {
-
-        SpawnItems();
+        scoreInstance = point.GetComponent<Score>();
+        nextCustomer.onClick.AddListener(SpawnItems);
     }
 
     private void Update()
     {
         if (Puzzle.gameObject.activeSelf)
         {
-            Storage.transform.SetParent(Puzzle.transform) ;//Đưa items từ bên ngoài vào trong game object puzzle để người chơi kéo thả vào ô
+            Storage.transform.SetParent(Puzzle.transform);//Đưa items từ bên ngoài vào trong game object puzzle để người chơi kéo thả vào ô
         }
     }
 
     public void SpawnItems()
     {
+        scoreInstance.isReturnNewLevel = false;
+        shapeInGame.Clear();
+        point.position = startPointPosition.position;
+
         for (int i = 0; i < shapesNumber; i++)
         {
             int j = Random.Range(0, shapes.Count - 1);
@@ -66,10 +75,5 @@ public class StorageShape : MonoBehaviour
                 point.position = new Vector3(point.position.x + distance * (shapeNumberInRow ), point.position.y - distanceRow, point.position.z);
             }
         }
-    }
-
-    public void CalculateScore()
-    {
-
     }
 }

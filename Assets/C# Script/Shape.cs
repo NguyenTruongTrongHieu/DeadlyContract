@@ -10,6 +10,7 @@ public class Shape : MonoBehaviour, IPointerClickHandler, IPointerUpHandler, IBe
     public Image ShapeImage;
     public Vector3 shapeSelectedScale;
     public Vector2 offset = new Vector2 (0f, 700f);
+    public GameObject score;
 
     private Vector3 shapeStartScale;
     [SerializeField] private RectTransform rectTransform;
@@ -19,9 +20,9 @@ public class Shape : MonoBehaviour, IPointerClickHandler, IPointerUpHandler, IBe
     private Quaternion rotate;
 
     private BoxCollider2D boxCollider;
-    private CanvasGroup canvasGroup;
     private bool trungNhau;
     private bool isOutSideTheBox;
+    private Score scoreInstance;
 
     public void Awake()
     {
@@ -32,10 +33,29 @@ public class Shape : MonoBehaviour, IPointerClickHandler, IPointerUpHandler, IBe
         shapeDraggable = true;
         startPosition = rectTransform.localPosition;
         rotate = this.GetComponent<RectTransform>().localRotation;
-
-        canvasGroup = this.GetComponent<CanvasGroup>();
     }
 
+    public void Start()
+    {
+        score = GameObject.Find("Point");
+        scoreInstance = score.GetComponent<Score>();
+    }
+
+    public void Update()
+    {
+        if (scoreInstance == null)
+        {
+            Debug.Log("score null");
+            return;
+        }
+        else
+        {
+            if (scoreInstance.isReturnNewLevel)
+            {
+                Destroy(this.gameObject);
+            }
+        }
+    }
     public void ReturnStartPosition()
     {
         this.transform.position = startPosition;

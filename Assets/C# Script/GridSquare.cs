@@ -9,15 +9,29 @@ public class GridSquare : MonoBehaviour, IDropHandler
     public Image normalImage;
     public Image hooverImage;
     public List<Sprite> normalImages;
+    public GameObject Grid;
 
     public bool selected { get; set; }
     public int squareIndex { get; set; }
     public bool squareOccupied { get; set; }
 
+    private Grid gridInstance;
+
     void Start()
     {
         selected = false;
         squareOccupied = false;
+        Grid = GameObject.Find("Grid");
+        gridInstance = Grid.GetComponent<Grid>();
+    }
+
+    public void Update()
+    {
+        if (gridInstance.isReset == true)
+        {
+            Debug.Log("Da xoa");
+            Destroy(this.gameObject);
+        }
     }
 
     public bool CanUseThisSquare()//temp function
