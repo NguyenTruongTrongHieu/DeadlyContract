@@ -16,8 +16,10 @@ public class Score : MonoBehaviour
     public GameObject XepHinh;
     public GameObject ChooseBox;
     public GameObject Storage;
+    public GameObject Grid;
 
     public bool isReturnNewLevel = false;//bien xac dnh nguoi choi bam complete chua de xoa cac shape cu
+    private Grid gridInstance;
 
     public void Start()
     {
@@ -26,6 +28,8 @@ public class Score : MonoBehaviour
             Debug.Log("complete null");
         }
         complete.onClick.AddListener(Complete);
+
+        gridInstance = Grid.GetComponent<Grid>();
     }
 
     public void AddScore()
@@ -47,6 +51,6 @@ public class Score : MonoBehaviour
 
         isReturnNewLevel = true;
         Storage.transform.SetParent(play.transform);
-        //Storage.gameObject.GetComponent<StorageShape>().SpawnItems();
+        gridInstance.ResetGrid();
     }
 }

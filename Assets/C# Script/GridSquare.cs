@@ -25,15 +25,6 @@ public class GridSquare : MonoBehaviour, IDropHandler
         gridInstance = Grid.GetComponent<Grid>();
     }
 
-    public void Update()
-    {
-        if (gridInstance.isReset == true)
-        {
-            Debug.Log("Da xoa");
-            Destroy(this.gameObject);
-        }
-    }
-
     public bool CanUseThisSquare()//temp function
     {
         return hooverImage.gameObject.activeSelf;
